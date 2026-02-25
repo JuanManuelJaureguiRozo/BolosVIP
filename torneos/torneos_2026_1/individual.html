@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resultados Individual Femenino Primer Semestre</title>
-  <link rel="icon" href="../../img/faviconHG.png" type="image/png">
+  <title>Resultados Torneo Individual 2026-1</title>
+  <link rel="icon" href="../../img/faviconVIP.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -25,7 +25,7 @@
     }
 
     footer {
-      background-color: #004c3f;
+      background-color: #000000;
       color: white;
       padding: 2rem 1rem;
       text-align: center;
@@ -60,7 +60,7 @@
     }
   
     .navbar-custom {
-      background-color: #004c3f;
+      background-color: #000000;
     }
   
     .navbar-custom .nav-link,
@@ -71,7 +71,7 @@
     .navbar-custom .dropdown-menu {
       background-color: white !important;
       color: black !important;
-      border: 1px solid #004c3f;
+      border: 1px solid #f1c232;
       box-shadow: none;
     }
   
@@ -82,6 +82,11 @@
     .navbar-custom .dropdown-item:hover {
       background-color: #f0f0f0;
       color: #000;
+    }
+
+    /* Make dropdown toggle (menu title) white when dropdown is open */
+    .navbar-custom .nav-link.dropdown-toggle[aria-expanded="true"] {
+      color: #f1c232 !important;
     }
   
     .logo-img {
@@ -111,7 +116,7 @@
         left: 0;
         width: 75%;
         height: 100%;
-        background-color: #004c3f;
+        background-color: #000000;
         padding-top: 3.5rem;
         padding-left: 1rem;
         z-index: 1050;
@@ -165,7 +170,7 @@
   
       <!-- Logo y texto a la derecha en móviles -->
       <a class="navbar-brand fw-bold d-flex align-items-center order-2 order-lg-1 ms-auto" href="../../index.html">
-        <img src="../../img/logo.png" alt="Logo Hatogrande" class="logo-img"> Bolos Hatogrande
+        <img src="../../img/logo.png" alt="Logo VIP" class="logo-img"> Bolos VIP
       </a>
   
       <!-- Menú colapsable -->
@@ -183,10 +188,7 @@
               Torneos Primer Semestre
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../torneos/torneos_2026_1/individual_masculino.html">Individual Masculino</a></li>
-              <li><a class="dropdown-item" href="../../torneos/torneos_2026_1/individual_femenino.html">Individual Femenino</a></li>
-              <li><a class="dropdown-item" href="../../torneos/selectivos/selectivo_femenino.html">Selectivo Femenino</a></li>
-              <li><a class="dropdown-item" href="../../torneos/selectivos/selectivo_masculino.html">Selectivo Masculino</a></li>
+              <li><a class="dropdown-item" href="../../torneos/torneos_2026_1/individual.html">Individual</a></li>
             </ul>
           </li>
           <!-- Menú desplegable 3 -->
@@ -195,8 +197,7 @@
               Escalafón
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../torneos/escalafon_masc.html">Masculino</a></li>
-              <li><a class="dropdown-item" href="../../torneos/escalafon_fem.html">Femenino</a></li>
+              <li><a class="dropdown-item" href="../../torneos/escalafon.html">Escalafón Mixto</a></li>
             </ul>
           </li>
         </ul>
@@ -206,7 +207,7 @@
 <div id="menu-overlay" class="menu-overlay"></div>    
 
 <div class="container contenido text-center">
-  <h1>Resultados Torneo - Individual Femenino Primer Semestre</h1>
+  <h1>Resultados Torneo - Individual 2026-1</h1>
 
   <!-- Indicador de carga -->
   <div id="loader" class="mt-4 d-flex justify-content-center align-items-center flex-column">
@@ -228,7 +229,7 @@
 </footer>
 
 <script>
-  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxfHus4aXkB7cJLlOWUNKPpgmLLqr7KnTGJ6QzbQGNniJaOTbeUTUB8_1LKQt6eQQmW/exec?hoja=Individual%20Femenino%202026-1%20Ordenado";
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxF75FPLNstzqGMgUJGm_ra0s7TlOpIHJLwXLSAfGEe6f51kw0NA_2H6jlCWpFawlgW1w/exec?hoja=Individual%20VIP%202026-1%20Ordenado";
 
   async function fetchSheetAsTable(url) {
     const loader = document.getElementById("loader");
@@ -294,30 +295,8 @@
       const cells = rows[i].children;
 
       if (hoja.includes("individual")) {
-        const categoryColors = {
-          "CATEGORÍA ELITE Y PRIMERA": "#cce5ff",
-          "SEGUNDA CATEGORÍA": "#fff3cd",
-          "TERCERA CATEGORÍA": "#f8d7da",
-          "CUARTA CATEGORÍA": "#d2b4de",
-        };
 
-        const categoryCell = cells[0];
-        const categoryText = categoryCell?.textContent.trim().toUpperCase();
-
-        if (categoryText && categoryColors[categoryText]) {
-          // Color for the category cell
-          categoryCell.style.backgroundColor = categoryColors[categoryText];
-          categoryCell.style.color = "black";
-          categoryCell.style.fontWeight = "bold";
-          // Color for the whole row
-          for (let k = 0; k < cells.length; k++) {
-            if (k !== 0) { // Avoid overriding category cell styles
-              cells[k].style.backgroundColor = categoryColors[categoryText];
-            }
-          }
-        }
-
-        for (let j = 3; j <= 12; j++) {
+        for (let j = 3; j <= 22; j++) {
           const cell = cells[j];
           const value = parseInt(cell?.textContent.trim());
           if (!isNaN(value) && value >= 200) {
@@ -330,8 +309,8 @@
     // Header
     const headers = table.querySelectorAll("thead th");
     headers.forEach(th => {
-      th.style.backgroundColor = "#004c3f";
-      th.style.color = "white";
+      th.style.backgroundColor = "#000000";
+      th.style.color = "#f1c232";
     });
   }
 
