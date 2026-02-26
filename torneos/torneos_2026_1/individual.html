@@ -295,6 +295,28 @@
       const cells = rows[i].children;
 
       if (hoja.includes("individual")) {
+        
+        const categoryColors = {
+          "CATEGORÍA 1": "#f1c232",
+          "CATEGORÍA 2": "#f1c232",
+          "CATEGORÍA 3": "#f1c232",
+        };
+
+        const categoryCell = cells[0];
+        const categoryText = categoryCell?.textContent.trim().toUpperCase();
+
+        if (categoryText && categoryColors[categoryText]) {
+          // Color for the category cell
+          categoryCell.style.backgroundColor = categoryColors[categoryText];
+          categoryCell.style.color = "black";
+          categoryCell.style.fontWeight = "bold";
+          // Color for the whole row
+          for (let k = 0; k < cells.length; k++) {
+            if (k !== 0) { // Avoid overriding category cell styles
+              cells[k].style.backgroundColor = categoryColors[categoryText];
+            }
+          }
+        }
 
         for (let j = 3; j <= 22; j++) {
           const cell = cells[j];
