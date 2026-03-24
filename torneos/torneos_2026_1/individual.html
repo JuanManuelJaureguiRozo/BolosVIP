@@ -306,15 +306,23 @@
         const categoryText = categoryCell?.textContent.trim().toUpperCase();
 
         if (categoryText && categoryColors[categoryText]) {
-          // Color for the category cell
-          categoryCell.style.backgroundColor = categoryColors[categoryText];
-          categoryCell.style.color = "black";
-          categoryCell.style.fontWeight = "bold";
-          // Color for the whole row
-          for (let k = 0; k < cells.length; k++) {
-            if (k !== 0) { // Avoid overriding category cell styles
-              cells[k].style.backgroundColor = categoryColors[categoryText];
-            }
+          const row = rows[i];
+          row.style.backgroundColor = categoryColors[categoryText];
+          
+          Array.from(cells).forEach(cell => {
+            cell.style.backgroundColor = categoryColors[categoryText];
+            cell.style.color = "black";
+            cell.style.fontWeight = "bold";
+            cell.style.borderColor = categoryColors[categoryText];
+            cell.style.textAlign = "center";
+            cell.style.verticalAlign = "middle";
+          });
+          
+          // Merge cells for category display
+          const firstCell = cells[0];
+          firstCell.colSpan = cells.length;
+          for (let k = 1; k < cells.length; k++) {
+            cells[k].style.display = "none";
           }
         }
 
